@@ -34,7 +34,7 @@ export default function NFTDetailPage() {
   }
 
   // Countdown timer data
-  const saleEndTime = new Date("April 11, 2025 4:30 AM")
+  const saleEndTime = new Date("May 10, 2025 4:30 AM")
   const [timeLeft, setTimeLeft] = useState(getTimeLeft())
 
   function getTimeLeft() {
@@ -80,98 +80,81 @@ export default function NFTDetailPage() {
     <div className="min-h-screen bg-nft-gradient text-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
       {/* Navigation */}
-      <header className="mb-8 relative">
-        <div className="navbar flex justify-between items-center">
-          <div className="flex items-center gap-6">
+        <header className="mb-8 relative">
+          <div className="navbar flex justify-between items-center">
+            {/* Logo on the far left */}
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold">N</span>
               </div>
             </div>
-            <nav className="hidden md:flex gap-6">
-              <a href="#" className="text-sm hover:text-cyan-400">
-                Home
-              </a>
-              <a href="#" className="text-sm hover:text-cyan-400">
-                Pre-Order Tracker
-              </a>
-              <a href="#" className="text-sm hover:text-cyan-400">
-                AI Look Generator
-              </a>
-              <a href="#" className="text-sm hover:text-cyan-400">
-                NFTs & Crypto
-              </a>
-              <a href="#" className="text-sm hover:text-cyan-400">
-                Merch
-              </a>
-              <a href="#" className="text-sm hover:text-cyan-400">
-                News & Legal
-              </a>
-            </nav>
-            <button className="md:hidden flex items-center justify-center" onClick={() => setMobileMenuOpen(true)}>
+
+            {/* Center or right nav */}
+            <div className="flex-1 flex justify-end items-center gap-6">
+              <nav className="hidden md:flex gap-6">
+                <a href="#" className="text-sm hover:text-cyan-400">Home</a>
+                <a href="#" className="text-sm hover:text-cyan-400">Pre-Order Tracker</a>
+                <a href="#" className="text-sm hover:text-cyan-400">AI Look Generator</a>
+                <a href="#" className="text-sm hover:text-cyan-400">NFTs & Crypto</a>
+                <a href="#" className="text-sm hover:text-cyan-400">Merch</a>
+                <a href="#" className="text-sm hover:text-cyan-400">News & Legal</a>
+              </nav>
+
+              {/* Online Users + Connect Wallet */}
+              <div className="flex items-center gap-4">
+                <div className="hidden sm:flex items-center gap-2 text-xs">
+                  <span className="text-cyan-400">2,382 Users Online</span>
+                </div>
+                <Button className="bg-cyan-400 hover:bg-cyan-500 text-black font-medium rounded-full">
+                  Connect Wallet
+                </Button>
+              </div>
+              <button className="md:hidden flex items-center justify-center" onClick={() => setMobileMenuOpen(true)}>
               <Menu className="w-5 h-5 pixel-icon" />
             </button>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 text-xs">
-              <span className="text-cyan-400">2,382 Users Online</span>
             </div>
-            <Button className="bg-cyan-400 hover:bg-cyan-500 text-black font-medium rounded-full">
-              Connect Wallet
-            </Button>
           </div>
-        </div>
-        <div
-            id="mobile-sidebar"
-            className={`fixed top-0 left-0 h-full w-64 bg-[#1a1221] z-50 transform transition-transform duration-300 ease-in-out ${
-                mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-            } border-r border-[#3a2a45]`}
-        >
-          <div className="p-4 flex justify-between items-center border-b border-[#3a2a45]">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xs">N</span>
-            </div>
-            <button onClick={() => setMobileMenuOpen(false)}>
-              <X className="w-5 h-5 pixel-icon" />
-            </button>
-          </div>
-          <nav className="flex flex-col p-4 gap-4">
-            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
-              Home
-            </a>
-            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
-              Pre-Order Tracker
-            </a>
-            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
-              AI Look Generator
-            </a>
-            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
-              NFTs & Crypto
-            </a>
-            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
-              Merch
-            </a>
-            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
-              News & Legal
-            </a>
-          </nav>
-          <div className="p-4 border-t border-[#3a2a45]">
-            <div className="text-xs pixel-text mb-4">
-              <span className="text-cyan-400">2,382 Users Online</span>
-            </div>
-            <Button className="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-medium rounded-full nav-link text-xs py-1 px-3 h-auto">
-              Connect Wallet
-            </Button>
-          </div>
-        </div>
 
-        {/* Overlay for mobile menu */}
-        {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setMobileMenuOpen(false)} />
-        )}
-      </header>
+          {/* Mobile Sidebar */}
+          <div
+              id="mobile-sidebar"
+              className={`fixed top-0 left-0 h-full w-64 bg-[#1a1221] z-50 transform transition-transform duration-300 ease-in-out ${
+                  mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+              } border-r border-[#3a2a45]`}
+          >
+            <div className="p-4 flex justify-between items-center border-b border-[#3a2a45]">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">N</span>
+              </div>
+              <button onClick={() => setMobileMenuOpen(false)}>
+                <X className="w-5 h-5 pixel-icon" />
+              </button>
+            </div>
+            <nav className="flex flex-col p-4 gap-4">
+              <a href="#" className="text-sm hover:text-cyan-400 nav-link">Home</a>
+              <a href="#" className="text-sm hover:text-cyan-400 nav-link">Pre-Order Tracker</a>
+              <a href="#" className="text-sm hover:text-cyan-400 nav-link">AI Look Generator</a>
+              <a href="#" className="text-sm hover:text-cyan-400 nav-link">NFTs & Crypto</a>
+              <a href="#" className="text-sm hover:text-cyan-400 nav-link">Merch</a>
+              <a href="#" className="text-sm hover:text-cyan-400 nav-link">News & Legal</a>
+            </nav>
+            <div className="p-4 border-t border-[#3a2a45]">
+              <div className="text-xs pixel-text mb-4">
+                <span className="text-cyan-400">2,382 Users Online</span>
+              </div>
+              <Button className="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-medium rounded-full nav-link text-xs py-1 px-3 h-auto">
+                Connect Wallet
+              </Button>
+            </div>
+          </div>
 
-      {/* Main Content */}
+          {/* Overlay for mobile menu */}
+          {mobileMenuOpen && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setMobileMenuOpen(false)} />
+          )}
+        </header>
+
+        {/* Main Content */}
       <main className="max-w-7xl mx-auto p-4 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Column - NFT Image and Description */}
