@@ -140,7 +140,6 @@
 
 .section-title {
   font-family: var(--font-pixel), monospace;
-  text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 1.25rem;
 }
@@ -188,6 +187,7 @@
 
 .pixel-text {
   font-family: var(--font-pixel), monospace;
+  font-size: 12px;
 }
 
 .pixel-text-large {
@@ -223,7 +223,10 @@
   line-height: 1.5;
 }
 
-@media (max-width: 768px) {
+.footer {
+  background-color: #0b0611;
+}
+@media (max-width: 767px) {
   .listing-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;

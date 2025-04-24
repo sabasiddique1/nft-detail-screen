@@ -5,11 +5,8 @@ import Image from "next/image"
 import {
   ChevronDown,
   ChevronUp,
-  Clock,
   Heart,
-  Info,
   ShoppingCart,
-  Tag,
   CheckCircle2,
   Eye,
   ExternalLink, BadgeAlert, ListFilter, TrendingUp, NotepadText, Files, BadgeDollarSign, Bookmark, Menu, X,
@@ -79,6 +76,7 @@ export default function NFTDetailPage() {
   }, [mobileMenuOpen])
 
   return (
+      <>
     <div className="min-h-screen bg-nft-gradient text-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
       {/* Navigation */}
@@ -447,7 +445,7 @@ export default function NFTDetailPage() {
                       {Array(4)
                           .fill(0)
                           .map((_, i) => (
-                              <div key={i} className="listing-row">
+                              <div key={i} className="pixel-text  listing-row">
                                 <div className="pixel-text">14.25 ETH</div>
                                 <div className="pixel-text">$22,206.34</div>
                                 <div>1</div>
@@ -465,7 +463,7 @@ export default function NFTDetailPage() {
                       {Array(4)
                           .fill(0)
                           .map((_, i) => (
-                              <div key={i} className="border-t border-[#3a2a45] p-4">
+                              <div key={i} className="pixel-text border-t border-[#3a2a45] p-4">
                                 <div className="flex justify-between mb-2">
                                   <div className="pixel-text font-bold">14.25 ETH</div>
                                   <div className="pixel-text text-gray-400">$22,206.34</div>
@@ -482,7 +480,9 @@ export default function NFTDetailPage() {
                                   <div className="text-gray-400">From:</div>
                                   <div className="text-pink-500">goooooode</div>
                                 </div>
-                                <button className="buy-listing-btn w-full">Buy</button>
+                                <div className="flex justify-center">
+                                <button className="buy-listing-btn w-72">Buy</button>
+                                </div>
                               </div>
                           ))}
                     </div>
@@ -520,7 +520,7 @@ export default function NFTDetailPage() {
                       {Array(4)
                           .fill(0)
                           .map((_, i) => (
-                              <div key={i} className="listing-row">
+                              <div key={i} className="pixel-text  listing-row">
                                 <div>13.69 ETH</div>
                                 <div>$22,206.34</div>
                                 <div>1</div>
@@ -536,7 +536,7 @@ export default function NFTDetailPage() {
                       {Array(4)
                           .fill(0)
                           .map((_, i) => (
-                              <div key={i} className="border-t border-[#3a2a45] p-4">
+                              <div key={i} className="pixel-text border-t border-[#3a2a45] p-4">
                                 <div className="flex justify-between mb-2">
                                   <div className="pixel-text font-bold">13.69 ETH</div>
                                   <div className="pixel-text text-gray-400">$22,206.34</div>
@@ -566,12 +566,13 @@ export default function NFTDetailPage() {
             </div>
           </div>
       </main>
+      </div>
+    </div>
 
-        <footer className="mt-16 text-center text-gray-500 text-sm pixel-text">
+        <footer className="footer p-5 text-center text-gray-500 text-sm pixel-text">
           <p>Independent from Rockstar Games</p>
           <p>© 2024 GTAG Pre-Order Hub.</p>
         </footer>
-      </div>
-    </div>
+  </>
 )
 }
