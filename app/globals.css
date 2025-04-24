@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 270 50% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 270 50% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 270 50% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 270 50% 10%;
+
+    --secondary: 270 50% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 270 50% 15%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 330 100% 70%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 270 50% 15%;
+    --input: 270 50% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Orbitron", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  button, a,
+  input, textarea, select,
+  div, span, p, label, text {
+    font-family: "Orbitron", sans-serif !important;
+    letter-spacing: 0.5px;
+  }
+
+  button,
+  a {
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .about,
+  .table,
+  .table td,
+  .table th {
+    font-family: "Orbitron", sans-serif !important;
+  }
+}
+
+.bg-nft-gradient {
+  background: radial-gradient(
+          circle at 30% 70%,
+          #1b3a5d 0%,
+          #0a050d 55%,
+          transparent 80%
+  ),
+  radial-gradient(
+          circle at 90% 0%,
+          #2e2238 0%,
+          transparent 60%
+  ),
+  linear-gradient(
+          180deg,
+          #0b0611 0%,
+          #140c20 100%
+  );
+  background-blend-mode: screen, lighten, normal;
+}
+
+.card-bg {
+  background-color: #231a2d;
+  border-radius: 12px;
+  border: 1px solid #3a2a45;
+}
+
+.icon-style {
+  stroke-width: 1.5px;
+}
+
+.countdown-box {
+  background-color: #231a2d;
+  border-radius: 8px;
+  padding: 8px 12px;
+  min-width: 60px;
+}
+
+
+.navbar {
+  background-color: #1a1221;
+  border-radius: 50px;
+  border: 1px solid #3a2a45;
+  padding: 10px 20px;
+}
+
+.buy-now-btn {
+  background-color: #4ecccc;
+  color: black;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.make-offer-btn {
+  background-color: transparent;
+  border: 1px solid #4ecccc;
+  color: #4ecccc;
+  border-radius: 50px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #3a2a45;
+}
+
+.trait-box {
+  background-color: #3a2a45;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.section-card {
+  background-color: #231a2d;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.listing-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 12px 16px;
+  border-top: 1px solid #3a2a45;
+  align-items: center;
+}
+
+.listing-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 12px 16px;
+  color: #999;
+  font-size: 0.75rem;
+}
+
+.buy-listing-btn {
+  background-color: #4ecca3;
+  color: black;
+  border-radius: 50px;
+  padding: 4px 16px;
+  font-size: 0.75rem;
+}
