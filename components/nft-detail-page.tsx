@@ -12,7 +12,7 @@ import {
   Tag,
   CheckCircle2,
   Eye,
-  ExternalLink,
+  ExternalLink, BadgeAlert, ListFilter, TrendingUp, NotepadText, Files, BadgeDollarSign, Bookmark,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import PriceHistoryChart from "@/components/price-history-chart"
@@ -129,7 +129,7 @@ export default function NFTDetailPage() {
               {/* Description Section */}
               <div className="p-4 border-b border-[#3A2A45]">
                 <div className="flex items-center gap-2 mb-4">
-                  <Info className="w-5 h-5 icon-style" />
+                  <NotepadText className="w-5 h-5 icon-style" />
                   <h2 className="text-lg font-medium">Description</h2>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -146,7 +146,7 @@ export default function NFTDetailPage() {
                   onClick={() => toggleSection("traits")}
                 >
                   <div className="flex items-center gap-2">
-                    <Tag className="w-5 h-5 icon-style" />
+                    <Bookmark className="w-5 h-5 icon-style" />
                     <h2 className="text-lg font-medium">Traits</h2>
                   </div>
                   {expandedSections.traits ? (
@@ -178,7 +178,7 @@ export default function NFTDetailPage() {
                   onClick={() => toggleSection("about")}
                 >
                   <div className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 icon-style" />
+                    <BadgeAlert className="w-5 h-5 icon-style" />
                     <h2 className="text-lg font-medium">About Bored Ape Yacht Club</h2>
                   </div>
                   {expandedSections.about ? (
@@ -216,7 +216,7 @@ export default function NFTDetailPage() {
                   onClick={() => toggleSection("details")}
                 >
                   <div className="flex items-center gap-2">
-                    <Info className="w-5 h-5 icon-style" />
+                    <Files className="w-5 h-5 icon-style" />
                     <h2 className="text-lg font-medium">Details</h2>
                   </div>
                   {expandedSections.details ? (
@@ -331,7 +331,7 @@ export default function NFTDetailPage() {
                 onClick={() => toggleSection("priceHistory")}
               >
                 <div className="flex items-center gap-2">
-                  <Tag className="w-5 h-5 icon-style" />
+                  <TrendingUp className="w-5 h-5 icon-style" />
                   <h2 className="text-lg font-medium">Price History</h2>
                 </div>
                 {expandedSections.priceHistory ? (
@@ -353,7 +353,7 @@ export default function NFTDetailPage() {
             <div className="section-card">
               <div className="section-header cursor-pointer" onClick={() => toggleSection("listings")}>
                 <div className="flex items-center gap-2">
-                  <Tag className="w-5 h-5 icon-style" />
+                  <ListFilter className="w-5 h-5 icon-style" />
                   <h2 className="text-lg font-medium">Listings</h2>
                 </div>
                 {expandedSections.listings ? (
@@ -396,7 +396,7 @@ export default function NFTDetailPage() {
             <div className="card-bg p-4">
               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleSection("offers")}>
                 <div className="flex items-center gap-2">
-                  <Tag className="w-5 h-5 icon-style" />
+                  <BadgeDollarSign className="w-5 h-5 icon-style" />
                   <h2 className="text-lg font-medium">Offers</h2>
                 </div>
                 {expandedSections.offers ? (
