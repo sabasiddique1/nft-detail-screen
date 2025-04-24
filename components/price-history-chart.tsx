@@ -79,7 +79,7 @@ export default function PriceHistoryChart() {
       // Draw date label
       if (i % 2 === 0) {
         ctx.fillStyle = "#999"
-        ctx.font = "10px 'Orbitron', sans-serif"
+        ctx.font = "10px var(--font-pixel), monospace"
         ctx.textAlign = "center"
         ctx.fillText(point.date, x, canvas.height - 10)
       }
@@ -89,7 +89,7 @@ export default function PriceHistoryChart() {
 
     // Draw y-axis labels (price)
     ctx.fillStyle = "#999"
-    ctx.font = "10px 'Orbitron', sans-serif"
+    ctx.font = "10px var(--font-pixel), monospace"
     ctx.textAlign = "right"
 
     const yLabels = 5
@@ -105,7 +105,7 @@ export default function PriceHistoryChart() {
     ctx.rotate(-Math.PI / 2)
     ctx.textAlign = "center"
     ctx.fillStyle = "#999"
-    ctx.font = "10px 'Orbitron', sans-serif"
+    ctx.font = "10px var(--font-pixel), monospace"
     ctx.fillText("Value (ETH)", 0, 0)
     ctx.restore()
 
@@ -115,7 +115,7 @@ export default function PriceHistoryChart() {
     ctx.rotate(Math.PI / 2)
     ctx.textAlign = "center"
     ctx.fillStyle = "#999"
-    ctx.font = "10px 'Orbitron', sans-serif"
+    ctx.font = "10px var(--font-pixel), monospace"
     ctx.fillText("Average Price", 0, 0)
     ctx.restore()
   }, [])

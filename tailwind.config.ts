@@ -19,10 +19,9 @@ const config = {
       },
     },
     extend: {
-        fontFamily: {
-          sans: ['Orbitron', 'sans-serif'],
-          heading: ['Poppins', 'sans-serif'],
-        },
+      fontFamily: {
+        pixel: ['var(--font-pixel)', 'monospace'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
