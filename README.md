@@ -1,2 +1,2 @@
 # nft-detail-screen
-Demo Task in Next js
+NFT Detail Screen in Next js
