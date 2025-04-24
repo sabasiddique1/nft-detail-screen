@@ -12,7 +12,7 @@ import {
   Tag,
   CheckCircle2,
   Eye,
-  ExternalLink, BadgeAlert, ListFilter, TrendingUp, NotepadText, Files, BadgeDollarSign, Bookmark,
+  ExternalLink, BadgeAlert, ListFilter, TrendingUp, NotepadText, Files, BadgeDollarSign, Bookmark, Menu, X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import PriceHistoryChart from "@/components/price-history-chart"
@@ -26,6 +26,8 @@ export default function NFTDetailPage() {
     offers: true,
     details: true,
   })
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const toggleSection = (section: string) => {
     setExpandedSections({
@@ -62,11 +64,25 @@ export default function NFTDetailPage() {
     return () => clearInterval(timer)
   }, [])
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById("mobile-sidebar")
+      if (sidebar && !sidebar.contains(event.target as Node) && mobileMenuOpen) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [mobileMenuOpen])
+
   return (
     <div className="min-h-screen bg-nft-gradient text-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
       {/* Navigation */}
-      <header className="mb-8">
+      <header className="mb-8 relative">
         <div className="navbar flex justify-between items-center">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
@@ -94,6 +110,9 @@ export default function NFTDetailPage() {
                 News & Legal
               </a>
             </nav>
+            <button className="md:hidden flex items-center justify-center" onClick={() => setMobileMenuOpen(true)}>
+              <Menu className="w-5 h-5 pixel-icon" />
+            </button>
           </div>
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2 text-xs">
@@ -104,6 +123,54 @@ export default function NFTDetailPage() {
             </Button>
           </div>
         </div>
+        <div
+            id="mobile-sidebar"
+            className={`fixed top-0 left-0 h-full w-64 bg-[#1a1221] z-50 transform transition-transform duration-300 ease-in-out ${
+                mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            } border-r border-[#3a2a45]`}
+        >
+          <div className="p-4 flex justify-between items-center border-b border-[#3a2a45]">
+            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-xs">N</span>
+            </div>
+            <button onClick={() => setMobileMenuOpen(false)}>
+              <X className="w-5 h-5 pixel-icon" />
+            </button>
+          </div>
+          <nav className="flex flex-col p-4 gap-4">
+            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
+              Home
+            </a>
+            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
+              Pre-Order Tracker
+            </a>
+            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
+              AI Look Generator
+            </a>
+            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
+              NFTs & Crypto
+            </a>
+            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
+              Merch
+            </a>
+            <a href="#" className="text-sm hover:text-cyan-400 nav-link">
+              News & Legal
+            </a>
+          </nav>
+          <div className="p-4 border-t border-[#3a2a45]">
+            <div className="text-xs pixel-text mb-4">
+              <span className="text-cyan-400">2,382 Users Online</span>
+            </div>
+            <Button className="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-medium rounded-full nav-link text-xs py-1 px-3 h-auto">
+              Connect Wallet
+            </Button>
+          </div>
+        </div>
+
+        {/* Overlay for mobile menu */}
+        {mobileMenuOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setMobileMenuOpen(false)} />
+        )}
       </header>
 
       {/* Main Content */}
@@ -113,7 +180,7 @@ export default function NFTDetailPage() {
           <div className="space-y-6">
             {/* NFT Image */}
             <div className="card-bg overflow-hidden">
-              <div className="bg-[#4ECCA3] p-4">
+              <div>
                 <Image
                   src="/image.png?height=500&width=500"
                   alt="Bored Ape #6138"
@@ -157,7 +224,7 @@ export default function NFTDetailPage() {
                 </div>
 
                 {expandedSections.traits && (
-                  <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                     {Array(6)
                       .fill(0)
                       .map((_, i) => (
@@ -311,12 +378,12 @@ export default function NFTDetailPage() {
                   <div className="text-gray-400">$22,380.00</div>
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                     <Button className="flex-1 buy-now-btn">
                         <ShoppingCart className="w-4 h-4 mr-2 icon-style" />
                         Buy Now
                     </Button>
-                    <Button className="flex-1 make-offer-btn" variant="outline">
+                  <Button className="flex-1 make-offer-btn mt-2 sm:mt-0" variant="outline">
                         <ExternalLink className="w-4 h-4 mr-2 icon-style" />
                         Make Offer
                     </Button>
@@ -350,44 +417,75 @@ export default function NFTDetailPage() {
 
             {/* Listings */}
 
+            {/* Listings */}
             <div className="section-card">
               <div className="section-header cursor-pointer" onClick={() => toggleSection("listings")}>
                 <div className="flex items-center gap-2">
-                  <ListFilter className="w-5 h-5 icon-style" />
-                  <h2 className="text-lg font-medium">Listings</h2>
+                  <ListFilter className="w-4 h-4 pixel-icon" />
+                  <h2 className="section-title">Listings</h2>
                 </div>
                 {expandedSections.listings ? (
-                    <ChevronUp className="w-5 h-5 icon-style" />
+                    <ChevronUp className="w-4 h-4 pixel-icon" />
                 ) : (
-                    <ChevronDown className="w-5 h-5 icon-style" />
+                    <ChevronDown className="w-4 h-4 pixel-icon" />
                 )}
               </div>
 
               {expandedSections.listings && (
-                  <div>
-                    <div className="listing-header">
-                      <div>Price</div>
-                      <div>USD Price</div>
-                      <div>Quantity</div>
-                      <div>Expiration</div>
-                      <div>From</div>
-                      <div></div> {/* Empty header for button column */}
+                  <div className="overflow-x-auto">
+                    {/* Desktop Listings Table */}
+                    <div className="hidden md:block">
+                      <div className="listing-header">
+                        <div>Price</div>
+                        <div>USD Price</div>
+                        <div>Quantity</div>
+                        <div>Expiration</div>
+                        <div>From</div>
+                        <div></div> {/* Empty header for button column */}
+                      </div>
+
+                      {Array(4)
+                          .fill(0)
+                          .map((_, i) => (
+                              <div key={i} className="listing-row">
+                                <div className="pixel-text">14.25 ETH</div>
+                                <div className="pixel-text">$22,206.34</div>
+                                <div>1</div>
+                                <div>12 hours ago</div>
+                                <div className="text-pink-500">goooooode</div>
+                                <div className="text-right">
+                                  <button className="buy-listing-btn">Buy</button>
+                                </div>
+                              </div>
+                          ))}
                     </div>
 
-                    {Array(4)
-                        .fill(0)
-                        .map((_, i) => (
-                            <div key={i} className="listing-row">
-                              <div>14.25 ETH</div>
-                              <div>$22,206.34</div>
-                              <div>1</div>
-                              <div>12 hours ago</div>
-                              <div className="text-pink-500">goooooode</div>
-                              <div className="text-right">
-                                <button className="buy-listing-btn">Buy</button>
+                    {/* Mobile Listings Table */}
+                    <div className="md:hidden">
+                      {Array(4)
+                          .fill(0)
+                          .map((_, i) => (
+                              <div key={i} className="border-t border-[#3a2a45] p-4">
+                                <div className="flex justify-between mb-2">
+                                  <div className="pixel-text font-bold">14.25 ETH</div>
+                                  <div className="pixel-text text-gray-400">$22,206.34</div>
+                                </div>
+                                <div className="flex justify-between mb-2">
+                                  <div className="text-gray-400">Quantity:</div>
+                                  <div>1</div>
+                                </div>
+                                <div className="flex justify-between mb-2">
+                                  <div className="text-gray-400">Expiration:</div>
+                                  <div>12 hours ago</div>
+                                </div>
+                                <div className="flex justify-between mb-3">
+                                  <div className="text-gray-400">From:</div>
+                                  <div className="text-pink-500">goooooode</div>
+                                </div>
+                                <button className="buy-listing-btn w-full">Buy</button>
                               </div>
-                            </div>
-                        ))}
+                          ))}
+                    </div>
                   </div>
               )}
             </div>
@@ -407,43 +505,73 @@ export default function NFTDetailPage() {
               </div>
 
               {expandedSections.offers && (
-                <div className="mt-4">
-                  <div className="grid grid-cols-6 gap-2 text-xs text-gray-400 mb-2 px-2">
-                    <div>Price</div>
-                    <div>USD Price</div>
-                    <div>Quantity</div>
-                    <div>Floor Difference</div>
-                    <div>Expiration</div>
-                    <div>From</div>
-                  </div>
-
-                  {Array(4)
-                    .fill(0)
-                    .map((_, i) => (
-                      <div
-                        key={i}
-                        className="grid grid-cols-6 gap-2 items-center py-3 px-2 text-sm border-t border-[#3A2A45]"
-                      >
-                        <div>13.69 ETH</div>
-                        <div>$22,206.34</div>
-                        <div>1</div>
-                        <div>4% below</div>
-                        <div>12 hours ago</div>
-                        <div className="text-pink-500">qwefaes</div>
+                  <div className="overflow-x-auto">
+                    {/* Desktop Offers Table */}
+                    <div className="hidden md:block">
+                      <div className="listing-header">
+                        <div>Price</div>
+                        <div>USD Price</div>
+                        <div>Quantity</div>
+                        <div>Floor Difference</div>
+                        <div>Expiration</div>
+                        <div>From</div>
                       </div>
-                    ))}
-                </div>
+
+                      {Array(4)
+                          .fill(0)
+                          .map((_, i) => (
+                              <div key={i} className="listing-row">
+                                <div>13.69 ETH</div>
+                                <div>$22,206.34</div>
+                                <div>1</div>
+                                <div>4% below</div>
+                                <div>12 hours ago</div>
+                                <div className="text-pink-500">qwefaes</div>
+                              </div>
+                          ))}
+                    </div>
+
+                    {/* Mobile Offers Table */}
+                    <div className="md:hidden">
+                      {Array(4)
+                          .fill(0)
+                          .map((_, i) => (
+                              <div key={i} className="border-t border-[#3a2a45] p-4">
+                                <div className="flex justify-between mb-2">
+                                  <div className="pixel-text font-bold">13.69 ETH</div>
+                                  <div className="pixel-text text-gray-400">$22,206.34</div>
+                                </div>
+                                <div className="flex justify-between mb-2">
+                                  <div className="text-gray-400">Quantity:</div>
+                                  <div>1</div>
+                                </div>
+                                <div className="flex justify-between mb-2">
+                                  <div className="text-gray-400">Floor Difference:</div>
+                                  <div>4% below</div>
+                                </div>
+                                <div className="flex justify-between mb-2">
+                                  <div className="text-gray-400">Expiration:</div>
+                                  <div>12 hours ago</div>
+                                </div>
+                                <div className="flex justify-between">
+                                  <div className="text-gray-400">From:</div>
+                                  <div className="text-pink-500">qwefaes</div>
+                                </div>
+                              </div>
+                          ))}
+                    </div>
+                  </div>
               )}
             </div>
+            </div>
           </div>
-        </div>
       </main>
 
-      <footer className="max-w-7xl mx-auto p-4 mt-16 text-center text-gray-500 text-sm">
-        <p>Independent from Rockstar Games</p>
-        <p>© 2024 GTAG Pre-Order Hub.</p>
-      </footer>
+        <footer className="mt-16 text-center text-gray-500 text-sm pixel-text">
+          <p>Independent from Rockstar Games</p>
+          <p>© 2024 GTAG Pre-Order Hub.</p>
+        </footer>
+      </div>
     </div>
-    </div>
-  )
+)
 }

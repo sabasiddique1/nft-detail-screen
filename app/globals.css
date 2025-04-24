@@ -222,3 +222,22 @@
   font-family: var(--font-pixel), monospace;
   line-height: 1.5;
 }
+
+@media (max-width: 768px) {
+  .listing-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .eth-price {
+    font-size: 1.5rem;
+  }
+
+  .usd-price {
+    font-size: 0.875rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+}
